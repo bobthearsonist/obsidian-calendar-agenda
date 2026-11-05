@@ -52,3 +52,7 @@ Enable Power Desk, connect the desired calendar accounts, then enable Calendar A
 ## Release files
 
 This repository contains the runtime plugin directly; no build step is required.
+
+## License
+
+[MIT](LICENSE)
