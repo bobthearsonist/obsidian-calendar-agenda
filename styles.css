@@ -35,14 +35,35 @@
   align-items: start;
   gap: 0.75rem;
   margin: 0.35rem 0;
-  border-inline-start: 3px solid var(--agenda-color, var(--interactive-accent));
+  border-inline-start: 4px solid var(--agenda-color, var(--interactive-accent));
   padding: 0.55rem 0.7rem;
   border-radius: var(--radius-s);
+  /* Rows without a provider colour fall back to transparent, so only known calendars are tinted. */
+  background: color-mix(in srgb, var(--agenda-color, transparent) 10%, transparent);
+}
+
+.calendar-agenda-event.is-ended {
+  background: transparent;
 }
 
 .calendar-agenda-event.is-current {
   background: var(--background-secondary);
+  background: color-mix(in srgb, var(--agenda-color, var(--interactive-accent)) 18%, var(--background-secondary));
   outline: 1px solid var(--interactive-accent);
+}
+
+.calendar-agenda-calendar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+}
+
+.calendar-agenda-swatch {
+  width: 0.65em;
+  height: 0.65em;
+  border-radius: 50%;
+  flex: none;
+  background: var(--agenda-color);
 }
 
 .calendar-agenda-event.is-ended .calendar-agenda-title {
