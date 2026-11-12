@@ -32,7 +32,8 @@ If `date` is omitted, `note` is used.
 - All-day and timed events
 - Localized dates and 12/24-hour time from Power Desk settings
 - Current, next, and ended status indicators
-- Calendar colors, locations, join links, and event links
+- Per-calendar colors: a colored bar, light row tint, and swatch beside the calendar name
+- Locations, join links, and event links
 - Manual refresh and direct access to Power Desk calendar settings
 - Cached-event display when a source cannot refresh
 - Read-only operation; Calendar Agenda never creates, edits, or deletes events
@@ -52,6 +53,14 @@ Enable Power Desk, connect the desired calendar accounts, then enable Calendar A
 ## Release files
 
 This repository contains the runtime plugin directly; no build step is required.
+
+## Development
+
+Tests use Node's built-in test runner and a stubbed Obsidian API, so there are no dependencies to install:
+
+```sh
+npm test
+```
 
 ## License
 
