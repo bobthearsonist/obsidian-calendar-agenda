@@ -1,7 +1,7 @@
 {
   "id": "calendar-agenda",
   "name": "Calendar Agenda",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "minAppVersion": "1.8.7",
   "description": "Embed read-only daily agendas backed by Power Desk calendar accounts.",
   "author": "bobthearsonist",
