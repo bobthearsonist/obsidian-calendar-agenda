@@ -1,0 +1,9 @@
+{
+  "name": "obsidian-calendar-agenda",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "check": "node --check main.js",
+    "test": "node --test"
+  }
+}
