@@ -42,7 +42,12 @@
   background: color-mix(in srgb, var(--agenda-color, transparent) 10%, transparent);
 }
 
+.calendar-agenda-event.is-ended {
+  background: transparent;
+}
+
 .calendar-agenda-event.is-current {
+  background: var(--background-secondary);
   background: color-mix(in srgb, var(--agenda-color, var(--interactive-accent)) 18%, var(--background-secondary));
   outline: 1px solid var(--interactive-accent);
 }
@@ -58,7 +63,7 @@
   height: 0.65em;
   border-radius: 50%;
   flex: none;
-  background: var(--agenda-color, var(--interactive-accent));
+  background: var(--agenda-color);
 }
 
 .calendar-agenda-event.is-ended .calendar-agenda-title {

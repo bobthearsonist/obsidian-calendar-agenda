@@ -64,6 +64,12 @@ function safeLink(raw) {
   }
 }
 
+// CSS only accepts 3, 4, 6 or 8 hex digits; anything else would invalidate
+// every declaration that reads --agenda-color instead of using its fallback.
+function validColor(value) {
+  return typeof value === "string" && /^#(?:[0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8})$/i.test(value);
+}
+
 function normalizeEventDuration(event) {
   if (
     Number.isFinite(event.startMs) &&
@@ -254,9 +260,8 @@ class AgendaBlock extends MarkdownRenderChild {
         const row = list.createEl("li", {
           cls: `calendar-agenda-event${status === "Now" ? " is-current" : ""}${status === "Ended" ? " is-ended" : ""}`,
         });
-        if (/^#[0-9a-f]{3,8}$/i.test(event.color || "")) {
-          row.style.setProperty("--agenda-color", event.color);
-        }
+        const color = validColor(event.color) ? event.color : null;
+        if (color) row.style.setProperty("--agenda-color", color);
         row.createDiv({
           cls: "calendar-agenda-time",
           text: event.allDay ? "All day" :
@@ -266,7 +271,7 @@ class AgendaBlock extends MarkdownRenderChild {
         details.createDiv({ cls: "calendar-agenda-title", text: event.title });
         const meta = details.createDiv({ cls: "calendar-agenda-meta" });
         const calendar = meta.createSpan({ cls: "calendar-agenda-calendar" });
-        calendar.createSpan({ cls: "calendar-agenda-swatch", attr: { "aria-hidden": "true" } });
+        if (color) calendar.createSpan({ cls: "calendar-agenda-swatch", attr: { "aria-hidden": "true" } });
         calendar.createSpan({ text: event.calendarName || "Calendar" });
         if (event.location) meta.createSpan({ text: event.location });
         if (status) meta.createSpan({ text: status, cls: "calendar-agenda-badge" });
@@ -318,4 +323,4 @@ class CalendarAgendaPlugin extends Plugin {
 }
 
 module.exports = CalendarAgendaPlugin;
-module.exports.internals = { dayKey, validDate, parseOptions, resolveDate, bounds, safeLink, normalizeEventDuration, buildModel, eventStatus, AgendaBlock };
+module.exports.internals = { dayKey, validDate, parseOptions, resolveDate, bounds, safeLink, validColor, normalizeEventDuration, buildModel, eventStatus, AgendaBlock };
