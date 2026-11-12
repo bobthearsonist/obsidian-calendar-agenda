@@ -265,7 +265,9 @@ class AgendaBlock extends MarkdownRenderChild {
         const details = row.createDiv({ cls: "calendar-agenda-details" });
         details.createDiv({ cls: "calendar-agenda-title", text: event.title });
         const meta = details.createDiv({ cls: "calendar-agenda-meta" });
-        meta.createSpan({ text: event.calendarName || "Calendar" });
+        const calendar = meta.createSpan({ cls: "calendar-agenda-calendar" });
+        calendar.createSpan({ cls: "calendar-agenda-swatch", attr: { "aria-hidden": "true" } });
+        calendar.createSpan({ text: event.calendarName || "Calendar" });
         if (event.location) meta.createSpan({ text: event.location });
         if (status) meta.createSpan({ text: status, cls: "calendar-agenda-badge" });
         const actions = row.createDiv({ cls: "calendar-agenda-actions" });
